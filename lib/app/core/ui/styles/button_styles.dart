@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:fwc_album_app/app/core/styles/button_styles.dart';
-import 'package:fwc_album_app/app/core/styles/colors_app.dart';
-import 'package:fwc_album_app/app/core/styles/text_styles.dart';
+import 'package:fwc_album_app/app/core/ui/styles/colors_app.dart';
+import 'package:fwc_album_app/app/core/ui/styles/text_styles.dart';
 
 class ButtonStyles {
   static ButtonStyles? _instance;
@@ -24,7 +23,7 @@ class ButtonStyles {
         ),
       );
 
-  ButtonStyle get yellowOutlinedButton => OutlinedButton.styleFrom(
+  ButtonStyle get yellowOutlinedButton => OutlinedButton.styleFrom( 
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(15),
         ),

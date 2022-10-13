@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:fwc_album_app/app/core/styles/button_styles.dart';
+import 'package:fwc_album_app/app/core/ui/styles/button_styles.dart';
+import 'package:fwc_album_app/app/core/ui/styles/text_styles.dart';
+import 'package:fwc_album_app/app/core/ui/widgets/button.dart';
+import 'package:fwc_album_app/app/core/ui/widgets/rounded_button.dart';
 
 class Splashpage extends StatelessWidget {
   const Splashpage({super.key});
@@ -7,7 +10,6 @@ class Splashpage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.red,
       appBar: AppBar(title: const Text('splash page')),
       body: Center(
         child: Column(
@@ -23,6 +25,16 @@ class Splashpage extends StatelessWidget {
               onPressed: () {},
             ),
             const TextField(),
+            Button(
+              style: ButtonStyles.i.primaryButton,
+              labelStyle: context.textStyles.textPrimaryFontBold,
+              label: 'salvar',
+              onPressed: () {},
+            ),
+            RoundedButton(
+              icon: Icons.add,
+              onPressed: () {},
+            ),
           ],
         ),
       ),
