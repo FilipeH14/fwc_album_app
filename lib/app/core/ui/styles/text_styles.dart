@@ -20,18 +20,22 @@ class TextStyles {
         fontWeight: FontWeight.normal,
         fontFamily: primaryFont,
       );
+
   TextStyle get textPrimaryFontMedium => TextStyle(
         fontWeight: FontWeight.w500,
         fontFamily: primaryFont,
       );
+
   TextStyle get textPrimaryFontSemiBold => TextStyle(
         fontWeight: FontWeight.w600,
         fontFamily: primaryFont,
       );
+
   TextStyle get textPrimaryFontBold => TextStyle(
         fontWeight: FontWeight.bold,
         fontFamily: primaryFont,
       );
+
   TextStyle get textPrimaryFontExtraBold => TextStyle(
         fontWeight: FontWeight.w800,
         fontFamily: primaryFont,
@@ -42,14 +46,17 @@ class TextStyles {
         fontWeight: FontWeight.normal,
         fontFamily: secondaryFont,
       );
+
   TextStyle get textSecondaryFontMedium => TextStyle(
         fontWeight: FontWeight.w600,
         fontFamily: secondaryFont,
       );
+
   TextStyle get textSecondaryFontBold => TextStyle(
         fontWeight: FontWeight.bold,
         fontFamily: secondaryFont,
       );
+
   TextStyle get textSecondaryFontExtraBold => TextStyle(
         fontWeight: FontWeight.w800,
         fontFamily: secondaryFont,
@@ -58,6 +65,10 @@ class TextStyles {
   TextStyle get labelTextField => textSecondaryFontRegular.copyWith(
         color: ColorsApp.i.darkGrey,
       );
+
+  TextStyle get textSecondaryFontExtraBoldPrimaryColor => textSecondaryFontExtraBold.copyWith(
+    color: ColorsApp.i.primary,
+  );
 }
 
 extension TextStylesExtensions on BuildContext {

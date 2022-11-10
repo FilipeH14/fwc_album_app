@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:fwc_album_app/app/core/ui/helpers/loader.dart';
 import 'package:fwc_album_app/app/core/ui/helpers/messages.dart';
 import 'package:fwc_album_app/app/core/ui/styles/button_styles.dart';
+import 'package:fwc_album_app/app/core/ui/styles/colors_app.dart';
 import 'package:fwc_album_app/app/core/ui/styles/text_styles.dart';
 import 'package:fwc_album_app/app/core/ui/widgets/button.dart';
-import 'package:fwc_album_app/app/core/ui/widgets/rounded_button.dart';
 
 class SplashPage extends StatefulWidget {
   const SplashPage({super.key});
@@ -13,38 +13,51 @@ class SplashPage extends StatefulWidget {
   State<SplashPage> createState() => _SplashPageState();
 }
 
-class _SplashPageState extends State<SplashPage> with Loader<SplashPage>, Messages<SplashPage> {
+class _SplashPageState extends State<SplashPage>
+    with Loader<SplashPage>, Messages<SplashPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('splash page')),
-      body: Center(
-        child: Column(
+      backgroundColor: context.colors.primary,
+      body: DecoratedBox(
+        decoration: const BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/background_splash.png'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Stack(
           children: [
-            ElevatedButton(
-              style: ButtonStyles.i.primaryButton,
-              child: const Text('salvar'),
-              onPressed: () async {
-                showLoader();
-                await Future.delayed(const Duration(seconds: 2));
-                hideLoader();
-              },
+            Align(
+              alignment: Alignment.topCenter,
+              child: Padding(
+                padding: EdgeInsets.only(
+                    top: MediaQuery.of(context).size.height * .08),
+                child: Image.asset(
+                  'assets/images/fifa_logo.png',
+                  height: MediaQuery.of(context).size.height * .25,
+                ),
+              ),
             ),
-            OutlinedButton(
-              style: ButtonStyles.i.yellowOutlinedButton,
-              child: const Text('cadastrar'),
-              onPressed: () => showError('Erro no botão outline'),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height * .19),
+                child: Button(
+                  width: MediaQuery.of(context).size.width * .9,
+                  style: context.buttonStyles.yellowButton,
+                  labelStyle: context.textStyles.textSecondaryFontExtraBoldPrimaryColor,
+                  label: 'Acessar',
+                  onPressed: () {},
+                ),
+              ),
             ),
-            const TextField(),
-            Button(
-              style: ButtonStyles.i.primaryButton,
-              labelStyle: context.textStyles.textPrimaryFontBold,
-              label: 'salvar',
-              onPressed: () {},
-            ),
-            RoundedButton(
-              icon: Icons.add,
-              onPressed: () {},
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 20),
+                child: Image.asset('assets/images/bandeiras.png'),
+              ),
             ),
           ],
         ),
