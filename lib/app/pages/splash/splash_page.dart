@@ -32,7 +32,8 @@ class _SplashPageState extends State<SplashPage>
               alignment: Alignment.topCenter,
               child: Padding(
                 padding: EdgeInsets.only(
-                    top: MediaQuery.of(context).size.height * .08),
+                  top: MediaQuery.of(context).size.height * .08,
+                ),
                 child: Image.asset(
                   'assets/images/fifa_logo.png',
                   height: MediaQuery.of(context).size.height * .25,
@@ -42,11 +43,13 @@ class _SplashPageState extends State<SplashPage>
             Align(
               alignment: Alignment.bottomCenter,
               child: Padding(
-                padding: EdgeInsets.only(bottom: MediaQuery.of(context).size.height * .19),
+                padding: EdgeInsets.only(
+                    bottom: MediaQuery.of(context).size.height * .19),
                 child: Button(
                   width: MediaQuery.of(context).size.width * .9,
                   style: context.buttonStyles.yellowButton,
-                  labelStyle: context.textStyles.textSecondaryFontExtraBoldPrimaryColor,
+                  labelStyle:
+                      context.textStyles.textSecondaryFontExtraBoldPrimaryColor,
                   label: 'Acessar',
                   onPressed: () {},
                 ),
