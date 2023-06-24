@@ -94,7 +94,7 @@ class _LoginPageState extends LoginViewImpl {
                   Padding(
                     padding: const EdgeInsets.only(left: 6),
                     child: Text(
-                      'Esqueceu a  senha',
+                      'Esqueceu a senha',
                       style:
                           context.textStyles.textSecondaryFontMedium.copyWith(
                         color: context.colors.yellow,
