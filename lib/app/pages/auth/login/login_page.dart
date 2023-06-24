@@ -4,20 +4,42 @@ import 'package:fwc_album_app/app/core/ui/styles/button_styles.dart';
 import 'package:fwc_album_app/app/core/ui/styles/colors_app.dart';
 import 'package:fwc_album_app/app/core/ui/styles/text_styles.dart';
 import 'package:fwc_album_app/app/core/ui/widgets/button.dart';
+import 'package:fwc_album_app/app/pages/auth/login/presenter/login_presenter.dart';
+import 'package:fwc_album_app/app/pages/auth/login/view/login_view_impl.dart';
+import 'package:validatorless/validatorless.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+  final LoginPresenter presenter;
+
+  const LoginPage({
+    required this.presenter,
+    super.key,
+  });
 
   @override
   State<LoginPage> createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _LoginPageState extends LoginViewImpl {
+  final _formKey = GlobalKey<FormState>();
+
+  final _emailEC = TextEditingController();
+  final _passwordEC = TextEditingController();
+
+  @override
+  void dispose() {
+    _emailEC.dispose();
+    _passwordEC.dispose();
+
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: context.colors.primary,
       body: Form(
+        key: _formKey,
         child: Container(
           padding: const EdgeInsets.all(10),
           decoration: const BoxDecoration(
@@ -44,6 +66,11 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   TextFormField(
+                    controller: _emailEC,
+                    validator: Validatorless.multiple([
+                      Validatorless.required('Campo de email obrigatório'),
+                      Validatorless.email('email inválido')
+                    ]),
                     decoration: const InputDecoration(
                       floatingLabelBehavior: FloatingLabelBehavior.never,
                       label: Text('E-mail'),
@@ -51,6 +78,13 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   const SizedBox(height: 20),
                   TextFormField(
+                    controller: _passwordEC,
+                    obscureText: true,
+                    validator: Validatorless.multiple([
+                      Validatorless.required('Campo de senha obrigatório'),
+                      Validatorless.min(
+                          6, 'senha deve conter pelo menos 6 caracteres'),
+                    ]),
                     decoration: const InputDecoration(
                       floatingLabelBehavior: FloatingLabelBehavior.never,
                       label: Text('Senha'),
@@ -60,7 +94,7 @@ class _LoginPageState extends State<LoginPage> {
                   Padding(
                     padding: const EdgeInsets.only(left: 6),
                     child: Text(
-                      'Esqueceu a  sennha',
+                      'Esqueceu a  senha',
                       style:
                           context.textStyles.textSecondaryFontMedium.copyWith(
                         color: context.colors.yellow,
@@ -75,7 +109,14 @@ class _LoginPageState extends State<LoginPage> {
                     labelStyle: context
                         .textStyles.textSecondaryFontExtraBoldPrimaryColor,
                     label: 'Entrar',
-                    onPressed: () {},
+                    onPressed: () {
+                      final valid = _formKey.currentState?.validate() ?? false;
+
+                      if (valid) {
+                        showLoader();
+                        widget.presenter.login(_emailEC.text, _passwordEC.text);
+                      }
+                    },
                   ),
                 ]),
               ),
