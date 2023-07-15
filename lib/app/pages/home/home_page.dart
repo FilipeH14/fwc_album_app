@@ -4,6 +4,7 @@ import 'package:fwc_album_app/app/core/ui/styles/colors_app.dart';
 import 'package:fwc_album_app/app/core/ui/styles/text_styles.dart';
 import 'package:fwc_album_app/app/core/ui/widgets/button.dart';
 import 'package:fwc_album_app/app/pages/home/widgets/status_tile.dart';
+import 'package:fwc_album_app/app/pages/home/widgets/sticker_percent_widget.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -45,7 +46,7 @@ class HomePage extends StatelessWidget {
                       child: Image.asset('assets/images/bola.png',
                           fit: BoxFit.cover),
                     ),
-                    const Text('Percent !!!'),
+                    const StickerPercentWidget(percent: 60),
                     const SizedBox(height: 20),
                     Text(
                       '45 figurinhas',
